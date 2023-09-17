@@ -17,7 +17,7 @@
         }
 
         #app {
-            margin: 5rem;
+            margin: 4.5rem;
             background-color: #fff;
             border-radius: 10px;
             padding: 3rem;
@@ -55,16 +55,15 @@
 
         .info-content__name {
             display: flex;
-            letter-spacing: 1rem;
             align-items: center;
+            letter-spacing: 1rem;
         }
 
         .info-content__name input {
             font-size: 3.5rem;
             font-weight: bold;
             letter-spacing: 0.5em;
-            width: 60%;
-            text-align: center;
+            width: 50%;
         }
 
         .info-content__name span {
@@ -101,14 +100,14 @@
         .time-date {
             letter-spacing: 0.2em;
             color: #0C4092;
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             margin-top: 2rem;
         }
 
         .time-time {
             letter-spacing: 0.1em;
-            font-size: 7rem;
+            font-size: 8rem;
             background-image: -webkit-linear-gradient(left, #D23626, #E2B62C);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -144,7 +143,7 @@
 
         .tips {
             margin-top: 10px;
-            font-size: 1.5rem;
+            font-size: 1.9rem;
             letter-spacing: 0.1em;
             color: #000;
             margin-bottom: 6rem;
@@ -189,7 +188,7 @@
 <div id="app">
     <div class="info">
         <div class="info-image" @click="uploadImage">
-            <input type="file" style="display: none" ref="upload" accept="image/*" capture="camera"
+            <input type="file" style="display: none" ref="upload" accept="image/*"
                    @change="fileChange"/>
             <img :src="image" alt="">
         </div>
