@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>南工学生电子通行证</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4193664_54qskmxcjtt.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        body {
+            background-color: #00469C;
+        }
+
+        #app {
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        input {
+            border: none;
+            outline: none;
+        }
+
+        .info {
+            display: flex;
+        }
+
+        .info-image {
+            width: 100px;
+            aspect-ratio: 0.75/1;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .info-image img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .info-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-content__name {
+            display: flex;
+            letter-spacing: 1em;
+            align-items: center;
+        }
+
+        .info-content__name input {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 0.5em;
+            width: 50%;
+            text-align: center;
+        }
+
+        .info-content__name span {
+            color: #4393EA;
+            font-size: 25px;
+        }
+
+        .info-content__id {
+            margin-top: 10px;
+            padding: 10px 0;
+            font-size: 16px;
+        }
+
+        .info-content__college {
+            margin-top: 15px;
+            letter-spacing: 0.1em;
+            font-size: 18px;
+        }
+
+        .time {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #D7D7D7;
+            margin-top: 16px;
+            border-radius: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .time-date {
+            letter-spacing: 0.2em;
+            color: #0C4092;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .time-time {
+            letter-spacing: 0.1em;
+            font-size: 52px;
+            background-image: -webkit-linear-gradient(left, #D23626, #E2B62C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .qr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        .qr-image {
+            width: 50%;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .qr-des {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #DB0F10;
+            font-weight: bold;
+            letter-spacing: 0.3em;
+        }
+
+        .tips {
+            margin-top: 10px;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: #000;
+            margin-bottom: 40px;
+        }
+
+        .tips b {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 0.2em;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            background-color: #D7D7D7;
+            left: 0;
+            bottom: 0;
+            padding: 10px 20px;
+        }
+
+        .footer span {
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            color: #000;
+        }
+
+        .footer button {
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #fff;
+            color: #AB2F36;
+            border: none;
+            padding: 4px 24px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="info">
+        <div class="info-image" @click="uploadImage">
+            <input type="file" style="display: none" ref="upload" accept="image/*" capture="camera"
+                   @change="fileChange"/>
+            <img :src="image" alt="">
+        </div>
+        <div class="info-content">
+            <div class="info-content__name">
+                <input v-model="info.name" @change="onChange"> </input>
+                <span class="iconfont icon-ziyuan-copy"></span>
+            </div>
+
+            <input class="info-content__id" v-model="info.id" @change="onChange"> </input>
+            <hr style="border-style: dashed;border-color: #eee"/>
+            <input class="info-content__college" v-model="info.college" @change="onChange"> </input>
+        </div>
+    </div>
+    <div class="time">
+        <div class="time-date">{{date.date}}</div>
+        <div class="time-time">{{date.time}}</div>
+    </div>
+    <hr style="border-style: dashed;border-color: #eee"/>
+    <div class="qr">
+        <div class="qr-image">
+            <img src="https://pic.baike.soso.com/p/20130307/20130307133541-2131676630.jpg">
+        </div>
+        <div class="qr-des">请在十分钟内完成跨校区通行</div>
+    </div>
+    <div class="tips">
+        当前二维码仅用于
+        <b>校本部东门</b>
+        的
+        <b>单次通行使用，</b>
+        过期后需重新扫码
+    </div>
+    <div class="footer">
+        <span>二维码有效期：{{valid}}秒</span>
+        <button>核验</button>
+    </div>
+</div>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const {createApp, ref} = Vue
+    createApp({
+        setup() {
+            const upload = ref(null)
+            const image = ref(localStorage.getItem('image') || "")
+
+            const info = ref(localStorage.getItem('info') ? JSON.parse(localStorage.getItem('info')) : {
+                name: '张三',
+                id: '2018000000',
+                college: '计算机学院'
+            })
+
+            const date = ref({
+                date: new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月' + new Date().getDate() + '日',
+                time: new Date().toLocaleTimeString()
+            })
+
+            // 有效期
+            const valid = ref(90)
+
+            const uploadImage = () => {
+                upload.value.click()
+            }
+
+            const fileChange = () => {
+                const file = upload.value.files[0]
+                const reader = new FileReader()
+                // 转换成base64，存到本地
+                reader.onload = function () {
+                    const base64 = reader.result
+                    localStorage.setItem('image', base64)
+                    image.value = base64
+                }
+                reader.readAsDataURL(file)
+                upload.value.value = null
+            }
+
+            const onChange = () => {
+                localStorage.setItem('info', JSON.stringify(info.value))
+            }
+
+            setInterval(() => {
+                // 时间
+                date.value.time = new Date().toLocaleTimeString()
+                valid.value--
+            }, 1000)
+
+            return {
+                image,
+                upload,
+                info,
+                date,
+                valid,
+                uploadImage,
+                fileChange,
+                onChange
+            }
+        }
+    }).mount('#app')
+</script>
+</html>
