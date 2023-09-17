@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-size: 20px;
+            color: #000;
         }
 
         body {
@@ -17,10 +17,10 @@
         }
 
         #app {
-            margin: 20px;
+            margin: 5rem;
             background-color: #fff;
             border-radius: 10px;
-            padding: 20px;
+            padding: 3rem;
             position: relative;
             overflow: hidden;
         }
@@ -32,13 +32,15 @@
 
         .info {
             display: flex;
+            justify-content: space-between;
         }
 
         .info-image {
-            width: 100px;
+            width: 14rem;
             aspect-ratio: 0.75/1;
-            margin-right: 10px;
             flex-shrink: 0;
+            border-radius: 30px;
+            overflow: hidden;
         }
 
         .info-image img {
@@ -48,39 +50,40 @@
 
         .info-content {
             flex: 1;
-            display: flex;
-            flex-direction: column;
+            margin-left: 20px;
         }
 
         .info-content__name {
             display: flex;
-            letter-spacing: 1em;
+            letter-spacing: 1rem;
             align-items: center;
         }
 
         .info-content__name input {
-            font-size: 24px;
+            font-size: 3.5rem;
             font-weight: bold;
             letter-spacing: 0.5em;
-            width: 50%;
+            width: 60%;
             text-align: center;
         }
 
         .info-content__name span {
             color: #4393EA;
-            font-size: 25px;
+            font-size: 4rem;
         }
 
         .info-content__id {
-            margin-top: 10px;
             padding: 10px 0;
-            font-size: 16px;
+            font-size: 2.5rem;
+            margin-top: 30px;
+            border-bottom: 4px dashed #eee;
         }
 
         .info-content__college {
-            margin-top: 15px;
-            letter-spacing: 0.1em;
-            font-size: 18px;
+            margin-top: 2rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 0.5rem;
         }
 
         .time {
@@ -89,22 +92,23 @@
             justify-content: space-between;
             padding: 10px;
             background-color: #D7D7D7;
-            margin-top: 16px;
+            margin-top: 2rem;
             border-radius: 10px;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 2rem;
         }
 
         .time-date {
             letter-spacing: 0.2em;
             color: #0C4092;
-            font-size: 24px;
-            margin-bottom: 16px;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
         }
 
         .time-time {
             letter-spacing: 0.1em;
-            font-size: 52px;
+            font-size: 7rem;
             background-image: -webkit-linear-gradient(left, #D23626, #E2B62C);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -132,7 +136,7 @@
 
         .qr-des {
             margin-top: 10px;
-            font-size: 16px;
+            font-size: 2.3rem;
             color: #DB0F10;
             font-weight: bold;
             letter-spacing: 0.3em;
@@ -140,14 +144,14 @@
 
         .tips {
             margin-top: 10px;
-            font-size: 12px;
+            font-size: 1.5rem;
             letter-spacing: 0.1em;
             color: #000;
-            margin-bottom: 40px;
+            margin-bottom: 6rem;
         }
 
         .tips b {
-            font-size: 13px;
+            font-size: 1.9rem;
             font-weight: bold;
             letter-spacing: 0.2em;
         }
@@ -161,23 +165,23 @@
             background-color: #D7D7D7;
             left: 0;
             bottom: 0;
-            padding: 10px 20px;
+            padding: 2rem 3rem;
         }
 
         .footer span {
-            font-size: 16px;
+            font-size: 2.2rem;
             letter-spacing: 0.1em;
             color: #000;
         }
 
         .footer button {
-            font-size: 16px;
+            font-size: 2.2rem;
             font-weight: bold;
             background-color: #fff;
             color: #AB2F36;
             border: none;
-            padding: 4px 24px;
-            border-radius: 20px;
+            padding: 10px 3.5rem;
+            border-radius: 3rem;
         }
     </style>
 </head>
@@ -196,7 +200,6 @@
             </div>
 
             <input class="info-content__id" v-model="info.id" @change="onChange"> </input>
-            <hr style="border-style: dashed;border-color: #eee"/>
             <input class="info-content__college" v-model="info.college" @change="onChange"> </input>
         </div>
     </div>
@@ -204,7 +207,7 @@
         <div class="time-date">{{date.date}}</div>
         <div class="time-time">{{date.time}}</div>
     </div>
-    <hr style="border-style: dashed;border-color: #eee"/>
+    <hr style="border-style: dashed;border-color: #000"/>
     <div class="qr">
         <div class="qr-image">
             <img src="https://pic.baike.soso.com/p/20130307/20130307133541-2131676630.jpg">
@@ -233,9 +236,9 @@
             const image = ref(localStorage.getItem('image') || "")
 
             const info = ref(localStorage.getItem('info') ? JSON.parse(localStorage.getItem('info')) : {
-                name: '张三',
-                id: '2018000000',
-                college: '计算机学院'
+                name: '韩翰',
+                id: '2115775183',
+                college: '计算机与软件学院'
             })
 
             const date = ref({
