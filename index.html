@@ -1,289 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>南工学生电子通行证</title>
-    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4193664_54qskmxcjtt.css">
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/c/font_4193664_ibfgiozih3s.css"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-size: 20px;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #000;
+      }
 
-        body {
-            background-color: #00469C;
-        }
+      body {
+        background-color: #00469c;
+        font-family: inherit; /* 继承基准字体族 */
+      }
 
-        #app {
-            margin: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
+      #app {
+        margin: 5rem;
+        background-color: #fff;
+        border-radius: 15px 15px 25px 25px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
 
-        input {
-            border: none;
-            outline: none;
-        }
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+      }
 
-        .info {
-            display: flex;
-        }
+      .info {
+        display: flex;
+        overflow: hidden;
+      }
 
-        .info-image {
-            width: 100px;
-            aspect-ratio: 0.75/1;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
+      .info-image {
+        width: 35%;
+        aspect-ratio: 0.75/1;
+        flex-shrink: 0;
+        border-radius: 30px;
+        overflow: hidden;
+      }
 
-        .info-image img {
-            height: 100%;
-            width: 100%;
-        }
+      .info-image img {
+        height: 100%;
+        width: 100%;
+      }
 
-        .info-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+      .info-content {
+        flex: 1;
+        margin-left: 20px;
+        margin-top: 30px;
+        overflow: hidden;
+      }
 
-        .info-content__name {
-            display: flex;
-            letter-spacing: 1em;
-            align-items: center;
-        }
+      .info-content__name {
+        display: flex;
+        letter-spacing: 1rem;
+        align-items: center;
+      }
 
-        .info-content__name input {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 0.5em;
-            width: 50%;
-            text-align: center;
-        }
+      .info-content__name input {
+        font-size: 3.5rem;
+        font-weight: bold;
+        letter-spacing: 0.5em;
+        width: 60%;
+        text-align: center;
+      }
 
-        .info-content__name span {
-            color: #4393EA;
-            font-size: 25px;
-        }
+      .info-content__name span {
+        color: #4393ea;
+        font-size: 4rem;
+      }
 
-        .info-content__id {
-            margin-top: 10px;
-            padding: 10px 0;
-            font-size: 16px;
-        }
+      .info-content__id {
+        padding: 10px 0;
+        font-size: 2.5rem;
+        margin-top: 30px;
+        border-bottom: 4px dashed #eee;
+      }
 
-        .info-content__college {
-            margin-top: 15px;
-            letter-spacing: 0.1em;
-            font-size: 18px;
-        }
+      .info-content__college {
+        margin-top: 2rem;
+        font-size: 2.5rem;
+        font-weight: bold;
+        letter-spacing: 0.5rem;
+      }
 
-        .time {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 10px;
-            background-color: #D7D7D7;
-            margin-top: 16px;
-            border-radius: 10px;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+      .time {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        padding-bottom: 20px;
+        background-color: #d7d7d7;
+        margin-top: 2rem;
+        border-radius: 26px;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
 
-        .time-date {
-            letter-spacing: 0.2em;
-            color: #0C4092;
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
+      .time-date {
+        letter-spacing: 0.2em;
+        color: #0c4092;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+      }
 
-        .time-time {
-            letter-spacing: 0.1em;
-            font-size: 52px;
-            background-image: -webkit-linear-gradient(left, #D23626, #E2B62C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+      .time-time {
+        letter-spacing: 0.1em;
+        font-size: 7rem;
+        background-image: -webkit-linear-gradient(left, #d23626, #e2b62c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        .qr {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 0;
-        }
+      .qr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+        border-top: 2px solid #d7d7d7;
+      }
 
-        .qr-image {
-            width: 50%;
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .qr-image {
+        width: 50%;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .qr-image img {
-            width: 100%;
-            height: 100%;
-        }
+      .qr-image img {
+        width: 100%;
+        height: 100%;
+      }
 
-        .qr-des {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #DB0F10;
-            font-weight: bold;
-            letter-spacing: 0.3em;
-        }
+      .qr-des {
+        margin-top: 10px;
+        font-size: 2.3rem;
+        color: #db0f10;
+        font-weight: bold;
+        letter-spacing: 0.3em;
+      }
 
-        .tips {
-            margin-top: 10px;
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            color: #000;
-            margin-bottom: 40px;
-        }
+      .tips {
+        margin-top: 10px;
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+        color: #000;
+        margin-bottom: 6rem;
+      }
 
-        .tips b {
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 0.2em;
-        }
+      .tips b {
+        font-size: 1.9rem;
+        font-weight: bold;
+        letter-spacing: 0.2em;
+      }
 
-        .footer {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            background-color: #D7D7D7;
-            left: 0;
-            bottom: 0;
-            padding: 10px 20px;
-        }
+      .footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        background-color: #d7d7d7;
+        left: 0;
+        bottom: 0;
+        padding: 2rem 3rem;
+      }
 
-        .footer span {
-            font-size: 16px;
-            letter-spacing: 0.1em;
-            color: #000;
-        }
+      .footer span {
+        font-size: 2.5rem;
+        letter-spacing: 0.1em;
+        color: #000;
+        font-weight: 560;
+      }
 
-        .footer button {
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #fff;
-            color: #AB2F36;
-            border: none;
-            padding: 4px 24px;
-            border-radius: 20px;
-        }
+      .footer button {
+        font-size: 2.2rem;
+        font-weight: bold;
+        background-color: #fff;
+        color: #ab2f36;
+        border: none;
+        padding: 10px 3.5rem;
+        border-radius: 3rem;
+      }
     </style>
-</head>
-<body>
-<div id="app">
-    <div class="info">
+  </head>
+  <body>
+    <div id="app">
+      <div class="info">
         <div class="info-image" @click="uploadImage">
-            <input type="file" style="display: none" ref="upload" accept="image/*" capture="camera"
-                   @change="fileChange"/>
-            <img :src="image" alt="">
+          <input
+            type="file"
+            style="display: none"
+            ref="upload"
+            accept="image/*"
+            capture="camera"
+            @change="fileChange"
+          />
+          <img :src="image" alt="" />
         </div>
         <div class="info-content">
-            <div class="info-content__name">
-                <input v-model="info.name" @change="onChange"> </input>
-                <span class="iconfont icon-ziyuan-copy"></span>
-            </div>
+          <div class="info-content__name">
+            <input v-model="info.name" @change="onChange" />
+            <span
+              class="iconfont"
+              :class="info.sex ===1 ? 'icon-ai-user' : 'icon-user-women-full'"
+              @click="changeSex"
+            ></span>
+          </div>
 
-            <input class="info-content__id" v-model="info.id" @change="onChange"> </input>
-            <hr style="border-style: dashed;border-color: #eee"/>
-            <input class="info-content__college" v-model="info.college" @change="onChange"> </input>
+          <input
+            class="info-content__id"
+            v-model="info.id"
+            @change="onChange"
+          />
+          <input
+            class="info-content__college"
+            v-model="info.college"
+            @change="onChange"
+          />
         </div>
-    </div>
-    <div class="time">
+      </div>
+      <div class="time">
         <div class="time-date">{{date.date}}</div>
         <div class="time-time">{{date.time}}</div>
-    </div>
-    <hr style="border-style: dashed;border-color: #eee"/>
-    <div class="qr">
+      </div>
+      <div class="qr">
         <div class="qr-image">
-            <img src="https://pic.baike.soso.com/p/20130307/20130307133541-2131676630.jpg">
+          <img
+            src="https://pic.baike.soso.com/p/20130307/20130307133541-2131676630.jpg"
+          />
         </div>
         <div class="qr-des">请在十分钟内完成跨校区通行</div>
-    </div>
-    <div class="tips">
+      </div>
+      <div class="tips">
         当前二维码仅用于
         <b>校本部东门</b>
         的
         <b>单次通行使用，</b>
         过期后需重新扫码
-    </div>
-    <div class="footer">
+      </div>
+      <div class="footer">
         <span>二维码有效期：{{valid}}秒</span>
         <button>核验</button>
+      </div>
     </div>
-</div>
-</body>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script>
-    const {createApp, ref} = Vue
+  </body>
+  <script src="./js/vue.js"></script>
+  <script>
+    const { createApp, ref } = Vue;
+
     createApp({
-        setup() {
-            const upload = ref(null)
-            const image = ref(localStorage.getItem('image') || "")
+      setup() {
+        const upload = ref(null);
+        const image = ref(localStorage.getItem("image") || "");
 
-            const info = ref(localStorage.getItem('info') ? JSON.parse(localStorage.getItem('info')) : {
-                name: '张三',
-                id: '2018000000',
-                college: '计算机学院'
-            })
+        const info = ref(
+          localStorage.getItem("info")
+            ? JSON.parse(localStorage.getItem("info"))
+            : {
+                name: "韩翰",
+                id: "2115775183",
+                college: "计算机与软件学院",
+                sex: 1,
+              }
+        );
 
-            const date = ref({
-                date: new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月' + new Date().getDate() + '日',
-                time: new Date().toLocaleTimeString()
-            })
+        const date = ref({
+          date:
+            new Date().getFullYear() +
+            "年" +
+            (new Date().getMonth() + 1) +
+            "月" +
+            new Date().getDate() +
+            "日",
+          time: new Date().toLocaleTimeString(),
+        });
 
-            // 有效期
-            const valid = ref(90)
+        // 有效期
+        const valid = ref(90);
 
-            const uploadImage = () => {
-                upload.value.click()
-            }
+        const uploadImage = () => {
+          upload.value.click();
+        };
 
-            const fileChange = () => {
-                const file = upload.value.files[0]
-                const reader = new FileReader()
-                // 转换成base64，存到本地
-                reader.onload = function () {
-                    const base64 = reader.result
-                    localStorage.setItem('image', base64)
-                    image.value = base64
-                }
-                reader.readAsDataURL(file)
-                upload.value.value = null
-            }
+        const fileChange = () => {
+          const file = upload.value.files[0];
+          const reader = new FileReader();
+          // 转换成base64，存到本地
+          reader.onload = function () {
+            const base64 = reader.result;
+            localStorage.setItem("image", base64);
+            image.value = base64;
+          };
+          reader.readAsDataURL(file);
+          upload.value.value = null;
+        };
 
-            const onChange = () => {
-                localStorage.setItem('info', JSON.stringify(info.value))
-            }
+        const onChange = () => {
+          localStorage.setItem("info", JSON.stringify(info.value));
+        };
 
-            setInterval(() => {
-                // 时间
-                date.value.time = new Date().toLocaleTimeString()
-                valid.value--
-            }, 1000)
+        const changeSex = () => {
+          if (info.value.sex === 1) info.value.sex = 2;
+          else info.value.sex = 1;
+        };
 
-            return {
-                image,
-                upload,
-                info,
-                date,
-                valid,
-                uploadImage,
-                fileChange,
-                onChange
-            }
-        }
-    }).mount('#app')
-</script>
+        setInterval(() => {
+          // 时间
+          date.value.time = new Date().toLocaleTimeString();
+          valid.value--;
+        }, 1000);
+
+        return {
+          image,
+          upload,
+          info,
+          date,
+          valid,
+          uploadImage,
+          fileChange,
+          onChange,
+          changeSex,
+        };
+      },
+    }).mount("#app");
+  </script>
 </html>
